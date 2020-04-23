@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<h1>
+		Article n°{{ project.id }}
+	</h1>
+
+	<h2>
+		Projet :
+		{{ project.name }}
+	</h2>
+	<h3>
+		crée le :
+		{{project.startedAt|date('Y-m-d')}}</h3>
+	<h3>
+		Nombre de tâche :
+		{{project.tasks|length}}
+	</h3>
+	<h3>
+		Statut du projet :
+		{{form(updateStatusForm)}}
+		</h3>
+
+		<a href="{{ path('add_task', {id: project.id} )}}">
+			Ajouter une tâche
+		</a>
+
+		<table>
+			<tr>
+				<td>
+					Nom de la tâche
+				</td>
+				<td>
+					Description
+				</td>
+				<td>
+					Ajoutée le
+				</td>
+			</tr>
+			{% for task in tasks %}
+				<tr>
+					<td>
+						{{task.title}}
+					</td>
+					<td>
+						{{task.description}}
+					</td>
+					<td>
+						{{task.createdAt|date('Y-m-d')}}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+	{% endblock %}

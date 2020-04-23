@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mes projets
+{% endblock %}
+
+{% block body %}
+	{% if app.user %}
+		<div class="mb-3">
+			Vous êtes connecté,
+			{{ app.user.username }}.
+		</div>
+
+	{% endif %}
+	<h1>
+		Projets
+	</h1>
+	<div>
+		<a href="{{ path('add_project')}}">Ajouter un projet</a>
+	</div>
+	<table>
+		<tr>
+			<td>
+				Nom du projet</td>
+			<td>
+				Status
+			</td>
+			<td>
+				Tâches
+			</td>
+			<td>
+				Ajouté le
+			</td>
+			<td>
+				Actions
+			</td>
+		</tr>
+		{% for project in projects %}
+			<tr>
+				<td>
+					{{project.name}}
+				</td>
+				<td>
+					{{project.status}}
+				</td>
+				<td>
+					{{project.tasks|length}}
+				</td>
+				<td>
+					{{project.startedAt|date('Y-m-d')}}
+				</td>
+				<td>
+					<a href="{{ path('detail_project', {id: project.id} )}}">
+						Gérer
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+
+
+	</table>
+{% endblock %}

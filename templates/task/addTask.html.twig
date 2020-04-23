@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une tache
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Ajouter une tâche au projet
+		{{project.name}}
+	</h1>
+	{{form(AddTaskForm)}}{% endblock %}
